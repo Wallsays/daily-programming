@@ -1,16 +1,8 @@
-class String
-  def shuffle(s)
-    s.split('').?.?
-  end
-end
-
 class Word
   def palindrome?(string)
      string == string.reverse
   end
 end
-
-"foobar".shuffle
 
 w = Word.new       
 w.palindrome?("foobar")
@@ -243,3 +235,90 @@ puts (1..5).to_a            # Put an array as a string.
 
  p :name             # Same as 'puts :name.inspect'
 # :name
+
+
+
+h1 = { "a" => 100, "b" => 200 }
+h2 = { "b" => 254, "c" => 300 }
+h1.merge(h2)   #=> {"a"=>100, "b"=>254, "c"=>300}
+h1.merge(h2){|key, oldval, newval| newval - oldval}
+               #=> {"a"=>100, "b"=>54,  "c"=>300}
+h1             #=> {"a"=>100, "b"=>200}
+
+
+# ======= Constructors ==============================================
+
+s = "foobar"       # A literal constructor for strings using double quotes
+# => "foobar"
+s.class
+# => String
+
+s = String.new("foobar")   # A named constructor for a string
+# => "foobar"
+s.class
+# => String
+s == "foobar"
+# => true
+
+a = Array.new([1, 3, 2])
+# => [1, 3, 2]
+
+h = Hash.new
+# => {}
+h[:foo]            # Try to access the value for the nonexistent key :foo.
+# => nil
+h = Hash.new(0)    # Arrange for nonexistent keys to return 0 instead of nil.
+# => {}
+h[:foo]
+# => 0
+
+
+# ======= Class inheritance ==============================================
+
+s = String.new("foobar")
+# => "foobar"
+ s.class                        # Find the class of s.
+# => String
+ s.class.superclass             # Find the superclass of String.
+# => Object
+ s.class.superclass.superclass  # Ruby 1.9 uses a new BasicObject base class
+# => BasicObject 
+ s.class.superclass.superclass.superclass
+# => nil
+
+# ======= A user class ==============================================
+
+class User
+  attr_accessor :name, :email
+
+  def initialize(attributes = {})
+    @name  = attributes[:name]
+    @email = attributes[:email]
+  end
+
+  def formatted_email
+    "#{@name} <#{@email}>"
+  end
+end
+
+ require './example_user'     # This is how you load the example_user code.
+# => ["User"]
+ example = User.new
+# => #<User:0x224ceec @email=nil, @name=nil>
+ example.name                 # nil since attributes[:name] is nil
+# => nil
+ example.name = "Example User"           # Assign a non-nil name
+# => "Example User"
+ example.email = "user@example.com"      # and a non-nil email address
+# => "user@example.com"
+example.formatted_email
+# => "Example User <user@example.com>"
+
+
+ user = User.new(name: "Michael Hartl", email: "mhartl@example.com")
+# => #<User:0x225167c @email="mhartl@example.com", @name="Michael Hartl">
+ user.formatted_email
+# => "Michael Hartl <mhartl@example.com>"
+
+
+
