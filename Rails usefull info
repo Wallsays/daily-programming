@@ -157,7 +157,7 @@ bundle exec rspec spec/requests/user_pages_spec.rb -e "signup page"
 
 //===============================================
 
-Box 7.1.Rails environments
+Rails environments
 
 Rails comes equipped with three environments: test, development, and production. The default environment for the Rails console is development:
 
