@@ -1,0 +1,5 @@
+For anyone who wants to use a ruby server, just use "
+
+ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 3000, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start" 
+
+in your directory and then go to http://localhost:3000/app/index.html.
