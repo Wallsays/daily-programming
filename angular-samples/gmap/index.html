@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AngularJS Google Maps</title>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js" type="text/javascript"></script>
+  <script src="app.js"></script> 
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body ng-app="app" ng-controller="Ctrl">
+  
+  <div class="repeat" ng-repeat="map in maps">
+
+    <gmaps center="map.center" zoom="map.zoom"></gmaps>
+
+    <div class="data">
+      <p>
+        <label>Latitude</label><input ng-model = "map.center.lat"/>  
+        <button ng-click="map.center.lat = map.center.lat - 1">-</button>
+        <button ng-click="map.center.lat = map.center.lat + 1">+</button>
+      </p>
+      <p>
+        <label>Longitude</label><input ng-model = "map.center.lng"/>
+        <button ng-click="map.center.lng = map.center.lng - 1">-</button>
+        <button ng-click="map.center.lng = map.center.lng + 1">+</button>
+      </p>
+      <p>
+        <label>Zoom</label><input ng-model = "map.zoom"/>
+        <button ng-click="map.zoom = map.zoom - 1">-</button>
+        <button ng-click="map.zoom = map.zoom + 1">+</button>
+      </p>
+    </div>
+  </div>
+  
+</body>
+</html> 
