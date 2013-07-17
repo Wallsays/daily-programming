@@ -1,0 +1,110 @@
+//===============================================
+
+Micropost.create
+Micropost.create!
+Micropost.new
+
+# we have
+
+user.microposts.create
+user.microposts.create!
+user.microposts.build
+
+//===============================================
+
+rake db:migrate && rake db:test:clone
+rake db:rollback
+
+# rails g migration add_description_column_to_items
+
+class AddDescriptionColumnToItems < ActiveRecord::Migration
+  def change
+    add_column :items, :description, :string
+  end
+end
+
+//===============================================
+
+i = Item.create(price:100, name: "Item 1")
+i.update_attributes(price:500)
+
+i = Item.last
+
+i.save! # с вызывом exceptions and their description
+
+//===============================================
+
+Item.create(name:"Item 3", price: 500, description: "desription")
+
+ # /items/1 PUT
+  def update
+    @item = Item.find(params[:id])
+    @item.update_attributes(params[:item])
+    if @item.errors.empty?
+      redirect_to item_path(@item) 
+    else
+      render "edit" 
+    end
+  end
+
+//===============================================
+
+# в environments еще migration среда для ммиграций на продакшене и staging для тестирования прилоения перед деплоем на поддомене,т.е. staging.app.com которое ни чем не отличается от продакшена, настройки последнего очень близки к прродакш
+
+//===============================================
+
+user1 = User.new ...
+cart = Cart.new...
+user1.cart = cart
+user1.cart # to view current cart belongs to user1
+
+//===============================================
+
+obj << 
+# equals
+obj.push
+
+//===============================================
+
+irb(main):009:0> i1.carts
+
+=> [#<Cart id: 4, user_id: nil, created_at: "2013-06-30 15:39:29", updated_at: "2013-06-30 15:39:29">]
+
+irb(main):010:0> i1.reload
+  Item Load (0.7ms)  SELECT "items".* FROM "items" WHERE "items"."id" = ? LIMIT 1  [["id", 12]]
+
+=> #<Item id: 12, price: 200.0, name: "Kettle", real: nil, weight: nil, description: nil, created_at: "2013-06-30 15:40:30", updated_at: "2013-06-30 15:40:30", votes_count: 0>
+
+irb(main):011:0> i1.carts
+  Cart Load (0.6ms)  SELECT "carts".* FROM "carts" INNER JOIN "carts_items" ON "carts"."id" = "carts_items"."cart_id" WHERE "carts_items"."item_id" = 12
+
+=> [#<Cart id: 4, user_id: nil, created_at: "2013-06-30 15:39:29", updated_at: "2013-06-30 15:39:29">, #<Cart id: 5, user_id: nil, created_at: "2013-06-30 15:39:33", updated_at: "2013-06-30 15:39:33">]
+
+//===============================================
+
+# has_many_through используется там где нужны какие-то дополнительные данные которые в join-table через has_and_belong_to_many не реализуемы
+
+//===============================================
+
+  <div class="sessionInfo">
+    <% if current_user %>
+      <%=current_user.login %> | <%= link_to "Sign out", destroy_user_session_path %>
+    <% else %>
+    <%= link_to "Sign in", new_user_session_path %> | <%= link_to "Registration", new_user_registration_path %>
+    <% end %>
+  </div>
+
+<p style="color: red;"><%= flash[:error] %></p>
+<p style="color: green;"><%= flash[:success] %></p>
+
+<%= yield %>
+
+
+<%= render :partil => "shared/frontend_notifier" %>
+
+
+  ## in application.html.erb
+
+//===============================================
+
+
