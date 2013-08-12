@@ -55,6 +55,9 @@ heroku logs
 rails generate controller Sessions --no-test-framework
 rails generate integration_test authentication_pages
 
+heroku run rake db:reset
+heroku run rails c
+
 //===============================================
 
 You can also deploy the application and even populate the production database with sample users (using the pg:reset task to reset the production database):
