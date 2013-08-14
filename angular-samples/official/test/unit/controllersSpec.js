@@ -31,7 +31,9 @@ describe('PhoneCat controllers', function() {
     it('should set the default value of orderProp model', function() {
       expect(scope.orderProp).toBe('age');
     });
-
- 
   });
+
+  describe('PhoneDetailCtrl', function(){
+  });
+
 });

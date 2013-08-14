@@ -11,6 +11,10 @@ function PhoneListCtrl($scope, $http) {
 }
  
 // for minifications issues
-PhoneListCtrl.$inject = ['$scope', '$http'];
- 
+PhoneListCtrl.$inject = ['$scope', '$http']; 
+// or 
 // var PhoneListCtrl = ['$scope', '$http', function($scope, $http) { /* constructor body */ }];
+
+function PhoneDetailCtrl($scope, $routeParams) {
+  $scope.phoneId = $routeParams.phoneId;
+}
