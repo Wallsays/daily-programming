@@ -11,15 +11,15 @@ describe('PhoneCat App', function() {
     });
  
  
-    it('should filter the phone list as user types into the search box', function() {
-      expect(repeater('.phones li').count()).toBe(3);
+    // it('should filter the phone list as user types into the search box', function() {
+    //   expect(repeater('.phones li').count()).toBe(3);
  
-      input('query').enter('nexus');
-      expect(repeater('.phones li').count()).toBe(1);
+    //   input('query').enter('nexus');
+    //   expect(repeater('.phones li').count()).toBe(1);
  
-      input('query').enter('motorola');
-      expect(repeater('.phones li').count()).toBe(2);
-    });
+    //   input('query').enter('motorola');
+    //   expect(repeater('.phones li').count()).toBe(2);
+    // });
 
     it('should display the current filter value within an element with id "status"', function() {
       expect(element('#status').text()).toMatch(/Current filter: \s*$/);
@@ -49,5 +49,11 @@ describe('PhoneCat App', function() {
                    "Motorola XOOM\u2122 with Wi-Fi"]);
     });
 
+    it('should render phone specific links', function() {
+      input('query').enter('nexus');
+      element('.phones li a').click();
+      expect(browser().location().url()).toBe('/phones/nexus-s');
+    });
+ 
   });
 });
