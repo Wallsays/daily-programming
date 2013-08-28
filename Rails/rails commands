@@ -1,5 +1,6 @@
 rails new sample_app --skip-test-unit
 
+
 rails _3.2.13_ new libapp --skip-bundle -T
 # -T skip tests
 rails g rspec:install
@@ -17,6 +18,12 @@ bundle exec spork cucumber & bundle exec spork
 time rspec spec/dummy_spec.rb       # without spork
 time rspec --drb spec/dummy_spec.rb # with spork
 time cucumber --drb 
+
+
+rake figaro:heroku
+heroku logs -t 
+heroku config -s # show all env config
+heroku config:add GMAIL_USERNAME=mail GMAIL_PASSWORD=pass
 
 
 bundle install --without production
