@@ -45,6 +45,8 @@ rake db:seed
 rails generate integration_test static_pages
 bundle exec rspec spec/requests/static_pages_spec.rb
 
+rails g scaffold product name price:decimal --skip-stylesheets
+
 mv app/views/layouts/application.html.erb foobar 
 
 bundle exec guard init rspec
