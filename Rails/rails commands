@@ -1,15 +1,37 @@
 rails new sample_app --skip-test-unit
 
+
+rails _3.2.13_ new libapp --skip-bundle -T
+# -T skip tests
+rails new blog --skip-test-unit --database=postgresql
+
+rails g rspec:install
+rails g cucumber:install
+bundle exec spork rspec --bootstrap
+bundle exec spork cucumber --bootstrap
+# edit env.rb and spec_helper.rb if needed
+bundle exec spork cucumber & bundle exec spork
+# require 'spec_helper'
+# describe "dummy spec" do 
+#   it "just passes" do
+#     expect(true).to be_true
+#   end
+# end
+time rspec spec/dummy_spec.rb       # without spork
+time rspec --drb spec/dummy_spec.rb # with spork
+time cucumber --drb 
+
+
+bundle exec rake spec
+bundle exec rake cucumber
+
+
 bundle install --without production
-
 rails generate rspec:install
-
 git mv README.rdoc README.md
-
 rm public/hello.html
 
 rails generate controller StaticPages home help --no-test-framework
-
 rails generate controller FooBars baz quux
 rails destroy  controller FooBars baz quux
 
@@ -20,8 +42,12 @@ rake db:migrate
 rake db:rollback
 rake db:migrate VERSION=0
 
+rake db:seed
+
 rails generate integration_test static_pages
 bundle exec rspec spec/requests/static_pages_spec.rb
+
+rails g scaffold product name price:decimal --skip-stylesheets
 
 mv app/views/layouts/application.html.erb foobar 
 
@@ -34,7 +60,6 @@ Using RSpec
 Bootstrapping /home/dis/Rails/sample_app/spec/spec_helper.rb.
 Done. Edit /home/dis/Rails/sample_app/spec/spec_helper.rb now with your favorite text editor and follow the instructions.
 
-
 rails generate controller Users new --no-test-framework
 rails generate integration_test user_pages
 
@@ -42,21 +67,23 @@ heroku login
 heroku rename twitte-analog-app
 sudo chown waclock /home/waclock/.netrc
 
+heroku run rake db:migrate
+rake figaro:heroku
+heroku logs -t 
+heroku config -s # show all env config
+heroku config:add GMAIL_USERNAME=mail GMAIL_PASSWORD=pass
+# to debug the error using the Heroku logfile.
+heroku logs
+heroku run rake db:reset
+heroku run rails c
+
 bundle exec annotate
 Annotated (1): User
 
 rake db:test:prepare
 
-heroku run rake db:migrate
-
-# to debug the error using the Heroku logfile.
-heroku logs
-
 rails generate controller Sessions --no-test-framework
 rails generate integration_test authentication_pages
-
-heroku run rake db:reset
-heroku run rails c
 
 //===============================================
 
