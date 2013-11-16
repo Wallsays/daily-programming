@@ -3,6 +3,8 @@ rails new sample_app --skip-test-unit
 
 rails _3.2.13_ new libapp --skip-bundle -T
 # -T skip tests
+rails new blog --skip-test-unit --database=postgresql
+
 rails g rspec:install
 rails g cucumber:install
 bundle exec spork rspec --bootstrap
