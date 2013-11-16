@@ -15,6 +15,11 @@ class Document
   def word_count
     words.size
   end
+
+  def to_s
+    "Document: #{title} by #{author}"
+  end
+
 end
 
 =begin 
