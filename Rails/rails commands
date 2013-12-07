@@ -1,5 +1,7 @@
 rails new sample_app --skip-test-unit
 
+rake db:seed RAILS_ENV=test --trace
+rake db:seed RAILS_ENV=production --trace
 
 rails _3.2.13_ new libapp --skip-bundle -T
 # -T skip tests
